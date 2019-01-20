@@ -1,0 +1,60 @@
+body,html{
+    height: 100%;
+    width: 100%;
+}
+.bg {
+    width: 100%;
+    height: 100%;
+    background: url('/images/bg.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+#title {
+    font-size: 30px;
+    margin-top: 0px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.re_con {
+    background: rgba(116,152,126, 0.1);
+    margin-top: 150px;
+    padding: 30px;
+    color: #000000;
+    border: 1px solid rgba(116,152,126, 0.1);
+}
+.form-horizontal .form-group .te_al {
+    text-align-last: justify;
+    font-weight: normal;
+}
+.but_b {
+    margin-top: 30px;
+}
+.but_b button {
+    width: 80px;
+    line-height: 30px;
+    outline: none;
+    border: 1px solid  rgba(29, 105, 176, 0.5);
+    background: rgba(29, 105, 176, 0.5);
+    margin-left: 78px;
+    color: #ffffff;
+}
+.but_b button:hover {
+    background: rgba(43,80,162,1);
+    border: 1px solid rgba(43,80,162,1);
+}
+.res_btn {
+    width: 80px;
+    line-height: 30px;
+    outline: none;
+    border: 1px solid  rgba(29, 105, 176, 0.5);
+    background: rgba(29, 105, 176, 0.5);
+    margin-left: 78px;
+    color: #ffffff;
+    display: inline-block;
+    text-align: center
+}
+.but_b .res_btn:hover {
+    background: rgba(43,80,162,1);
+    border: 1px solid rgba(43,80,162,1);
+    color: #ffffff;
+    text-decoration: none;
+}

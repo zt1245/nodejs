@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/user_manage.css">
+</head>
+<body>
+    <div class="index">
+        <%- include('./common/header.ejs',{nickname: nickname,isAdmin: isAdmin}) %>
+        <div class="main">
+            <%- include('./common/menu.ejs',{isAdmin: isAdmin}) %>
+            <div class="main_right">
+                <div class="main_right_bg">
+                    <form action="/users/search" method="get" class="ta">
+                        <input type="text" placeholder="请输入昵称" name="nickname">
+                        <button>搜索</button>
+                    </form>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>序号</td>
+                                <td>用户名</td>
+                                <td>用户昵称</td>
+                                <td>手机号码</td>
+                                <td>性别</td>
+                                <td>年龄</td>
+                                <td>是否管理员</td>
+                                <td>操作</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0;i<userList.length;i++){ %>
+                                <tr>
+                                    <td><%= userList[i]._id %></td>
+                                    <td><%= userList[i].username %></td>
+                                    <td><%= userList[i].nickname %></td>
+                                    <td><%= userList[i].phone %></td>
+                                    <td><%= userList[i].sex || '-' %></td>
+                                    <td><%= userList[i].age || '-' %></td>
+                                    <td><%= parseInt(userList[i].is_admin) ? '是':'否' %></td>
+                                    <td>
+                                        <!-- 如果当前登录的管理员跟这条记录相匹配的话，
+                                            就可以进行修改操作，如果记录是其他管理员的话，不能进行修改操作，
+                                            如果是普通用户的话就可以进行修改和删除操作
+                                        -->
+                                        <% if(userList[i].username == username){ %>
+                                            <a href="javascript:;" class="upd">修改</a>
+                                        <% }else if(parseInt(userList[i].is_admin)){ %>
+
+                                        <% }else{ %>
+                                            <a href="javascript:;" class="upd">修改</a>
+                                            <a href="/users/delete?_id=<%= userList[i]._id %>&page=<%= page %>" class="del">删除</a>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" class="Previous">
+                                    <span>&laquo;</span>
+                                </a>
+                            </li>
+                            <% if(nicknameUrl){ %>
+                                <% for(var i=0;i<totalPage;i++){ %>
+                                    <% if(page == i+1){ %>
+                                        <li><a href="/users/search?nickname=<%= nicknameUrl %>&page=<%= i+1 %>" class="user_active"><%= i+1 %></a></li>
+                                    <% }else{ %>
+                                        <li><a href="/users/search?nickname=<%= nicknameUrl %>&page=<%= i+1 %>"><%= i+1 %></a></li>
+                                    <% } %>
+                                <% } %>
+                            <% }else{ %>
+                                <% for(var i=0;i<totalPage;i++){ %>
+                                    <% if(page == i+1){ %>
+                                        <li><a href="/user_manage.html?page=<%= i+1 %>" class="user_active"><%= i+1 %></a></li>
+                                    <% }else{ %>
+                                        <li><a href="/user_manage.html?page=<%= i+1 %>"><%= i+1 %></a></li>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                            <li>
+                                <a href="#" class="Next">
+                                    <span>&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <form action="/users/update" method="post" class="update_form">
+                        <h4>用户信息修改</h4>
+                        <div class="u_page">
+                            <label>page：</label>
+                            <input type="text" name="u_page" class="u_page">
+                        </div>
+                        <div class="id_none">
+                            <label>序号：</label>
+                            <input type="text" name="_id" class="_id">
+                        </div>
+                        <div>
+                            <label>用户名:</label>
+                            <input type="text" name="username" class="username" disabled>
+                        </div>
+                        <div>
+                            <label>用户昵称:</label>
+                            <input type="text" name="nickname" class="nickname" placeholder="请输入用户昵称">
+                        </div>
+                        <div>
+                            <label>手机号码:</label>
+                            <input type="text" name="phone" class="phone" placeholder="请输入手机号码">
+                        </div>
+                        <div>
+                            <label>年龄:</label>
+                            <input type="text" name="age" class="age" placeholder="请输入年龄">
+                        </div>
+                        <div>
+                            <label>性别:</label>
+                            <input type="text" name="sex" class="sex" placeholder="请输入性别">
+                        </div>
+                        <div>
+                            <label>管理员:</label>
+                            <input type="radio" name="isAdmin" value="1">yes
+                            <input type="radio" name="isAdmin" value="0" checked>no 
+                        </div>
+                        <div>
+                            <button>提交</button>
+                            <i>取消</i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="/lib/jquery/jquery.min.js"></script>
+<script>
+    $('.upd').click(function(){
+        $('.update_form').css('display','block');
+        $('.update_form ._id').val($(this).parent().parent().find('td').eq(0).html());
+        $('.update_form .username').val($(this).parent().parent().find('td').eq(1).html());
+        $('.update_form .nickname').val($(this).parent().parent().find('td').eq(2).html());
+        $('.update_form .phone').val($(this).parent().parent().find('td').eq(3).html());
+        $('.update_form .age').val($(this).parent().parent().find('td').eq(5).html());
+        $('.update_form .sex').val($(this).parent().parent().find('td').eq(4).html());
+        $('.update_form .u_page').val($('.user_active').html());
+    });
+    $('.update_form i').click(function(){
+        $('.update_form').css('display', 'none');
+    })
+</script>

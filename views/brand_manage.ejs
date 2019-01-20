@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/brand_manage.css">
+</head>
+
+<body>
+    <div class="index">
+        <%- include('./common/header.ejs',{nickname: nickname,isAdmin: isAdmin}) %>
+        <div class="main">
+            <%- include('./common/menu.ejs',{isAdmin: isAdmin}) %>
+            <div class="main_right">
+                <div class="main_right_bg">
+                    <div class="main_r_t">
+                        <a href="javascript:;" class="add_phone">新增品牌</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>序号</td>
+                                <td>品牌LOGO</td>
+                                <td>品牌名称</td>
+                                <td>操作</td>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody"></tbody>
+                    </table>
+                    <div class="update_form">
+                        <h4>新增</h4>
+                        <div>
+                            <label>品牌LOGO:</label>
+                            <input type="file" name="file" class="file">
+                        </div>
+                        <div>
+                            <label>品牌名称:</label>
+                            <input type="text" name="name" class="name" placeholder="请输入品牌名称">
+                        </div>
+                        <div>
+                            <button class="submit">提交</button>
+                            <i>取消</i>
+                        </div>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="pagination"></ul>
+                </nav>
+                <div class="up_form">
+                    <h4>修改</h4>
+                    <div class="up_id">
+                        <label>序号:</label>
+                        <input type="text" name="_id" class="_id">
+                    </div>
+                    <div>
+                        <label>品牌LOGO:</label>
+                        <input type="file" name="File" class="File">
+                    </div>
+                    <div>
+                        <label>品牌名称:</label>
+                        <input type="text" name="Name" class="Name">
+                    </div>
+                    <div>
+                        <button class="Submit">提交</button>
+                        <i>取消</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/brand_manage.js"></script>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/mobile_manage.css">
+</head>
+
+<body>
+    <div class="index">
+        <%- include('./common/header.ejs',{nickname: nickname,isAdmin: isAdmin}) %>
+        <div class="main">
+            <%- include('./common/menu.ejs',{isAdmin: isAdmin}) %>
+            <div class="main_right">
+                <div class="main_right_bg">
+                    <div class="main_r_t">
+                        <a href="javascript:;" class="add_phone">新增手机</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>序号</td>
+                                <td>图片</td>
+                                <td>手机名称</td>
+                                <td>所属品牌</td>
+                                <td>官方指导价</td>
+                                <td>二手回收价</td>
+                                <td>操作</td>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <!-- <tr>
+                                <td>1</td>
+                                <td>苹果iPhone XS MAX</td>
+                                <td>苹果iPhone XS MAX </td>
+                                <td>苹果</td>
+                                <td>￥18000</td>
+                                <td>￥12000</td>
+                                <td>
+                                    <a href="javascript:;" class="upd">修改</a>
+                                    <a href="javascript:;" class="del">删除</a>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                    <div class="update_form">
+                        <h4>新增</h4>
+                        <div>
+                            <label>名称:</label>
+                            <input type="text" name="name" class="name" placeholder="请输入名称">
+                        </div>
+                        <div>
+                            <label>品牌:</label>
+                            <select name="brand" id="brand">
+                                <!-- <option value="小米">小米</option>
+                                <option value="苹果">苹果</option>
+                                <option value="VIVO">vivo</option>
+                                <option value="OPPO">oppo</option>
+                                <option value="三星">三星</option>
+                                <option value="华为">华为</option>
+                                <option value="魅族">魅族</option> -->
+                            </select>
+                        </div>
+                        <div>
+                            <label>官方指导价:</label>
+                            <input type="text" name="official_price" class="official_price" placeholder="请输入官方指导价">
+                        </div>
+                        <div>
+                            <label>二手回收价:</label>
+                            <input type="text" name="recovery_price" class="recovery_price" placeholder="请输入二手回收价">
+                        </div>
+                        <div class="pic">
+                            <label>图片:</label>
+                            <input type="file" name="file" class="file">
+                        </div>
+                        <div>
+                            <button class="submit">提交</button>
+                            <i>取消</i>
+                        </div>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="pagination"></ul>
+                </nav>
+                <div class="up_form">
+                    <h4>修改</h4>
+                    <div class="up_id">
+                        <label>序号:</label>
+                        <input type="text" name="_id" class="_id">
+                    </div>
+                    <div>
+                        <label>名称:</label>
+                        <input type="text" name="Name" class="Name" placeholder="请输入名称">
+                    </div>
+                    <div>
+                        <label>品牌:</label>
+                        <select name="Brand" id="Brand">
+                            <!-- <option value="小米">小米</option>
+                            <option value="苹果">苹果</option>
+                            <option value="VIVO">vivo</option>
+                            <option value="OPPO">oppo</option>
+                            <option value="三星">三星</option>
+                            <option value="华为">华为</option>
+                            <option value="魅族">魅族</option> -->
+                        </select>
+                    </div>
+                    <div>
+                        <label>官方指导价:</label>
+                        <input type="text" name="Official_price" class="Official_price" placeholder="请输入官方指导价">
+                    </div>
+                    <div>
+                        <label>二手回收价:</label>
+                        <input type="text" name="Recovery_price" class="Recovery_price" placeholder="请输入二手回收价">
+                    </div>
+                    <div class="pic">
+                        <label>图片:</label>
+                        <input type="file" name="File" class="File">
+                    </div>
+                    <div>
+                        <button class="Submit">提交</button>
+                        <i>取消</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/mobile_manage.js"></script>
